@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Clock</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: url('s.jpg'); /* Path to your super background image */
+            background-size: cover;
+            background-position: center;
+            color: #000; /* Set main clock color to black */
+            text-align: center;
+        }
+
+        #DigitalClock {
+            font-size: 5rem; /* Larger font size for the main clock */
+            letter-spacing: 5px; /* Increased letter spacing */
+            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5); /* Adjusted shadow for better visibility */
+            animation: shimmer 2s infinite alternate;
+        }
+
+        #DigitalClock span {
+            animation: blink 1s infinite alternate;
+        }
+
+        @keyframes blink {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0.5;
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+            }
+            100% {
+                text-shadow: 4px 4px 12px rgba(255, 255, 255, 0.8);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="DigitalClock"></div>
+    <script>
+        function showTime() {
+            var date = new Date();
+            var h = date.getHours();
+            var m = date.getMinutes();
+            var s = date.getSeconds();
+            var session = "AM";
+            if (h == 0) {
+                h = 12;
+            }
+            if (h > 12) {
+                h = h - 12;
+                session = "PM";
+            }
+            m = padZero(m);
+            s = padZero(s);
+            document.getElementById("DigitalClock").innerHTML = h + ":" + m + ":" + s + " <span>" + session + "</span>";
+            
+            setTimeout(showTime, 1000);
+        }
+
+        function padZero(num) {
+            return (num < 10 ? '0' : '') + num;
+        }
+
+        showTime();
+    </script>
+</body>
+</html>

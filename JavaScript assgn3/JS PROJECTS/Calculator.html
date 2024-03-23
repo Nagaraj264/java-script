@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .calculator-container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .title {
+            font-size: 32px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #333;
+        }
+
+        input[type="button"] {
+            color: #fff;
+            border: 2px solid transparent; /* Added border with transparent color */
+            width: 60px;
+            height: 60px;
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 24px;
+            transition: background-color 0.3s, border-color 0.3s; /* Added border-color transition */
+        }
+
+        /* Updated button styles */
+        .number {
+            background-color: #3498db; /* Blue for numbers 1-9 */
+        }
+
+        .operator {
+            background-color: #f39c12; /* Orange for operator buttons (+, -, *, /) */
+        }
+
+        .calculate {
+            background-color: #2ecc71; /* Green for calculate button */
+        }
+
+        .clear {
+            background-color: #e74c3c; /* Red for clear button */
+        }
+
+        .decimal {
+            background-color: #9b59b6; /* Purple for decimal button */
+        }
+
+        /* Updated hover effect to change border color */
+        input[type="button"]:hover {
+            background-color: #555;
+            border-color: #555; /* Border color change on hover */
+        }
+
+        /* Updated active effect to change border color */
+        input[type="button"]:active {
+            background-color: #333;
+            border-color: #333; /* Border color change when active */
+        }
+
+        input[type="text"] {
+            background-color: #f9f9f9;
+            border: none;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+            font-size: 36px;
+            text-align: right;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            height: 80px;
+            outline: none;
+            color: #333; /* Color for result display */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 10px;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        #result {
+            font-size: 36px;
+            padding-right: 20px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator-container">
+        <div class="title"> Calculator</div>
+        <input type="text" id="result" readonly>
+        <table>
+            <tr class="row">
+                <td><input type="button" class="number" value="7" onclick="display('7')"></td>
+                <td><input type="button" class="number" value="8" onclick="display('8')"></td>
+                <td><input type="button" class="number" value="9" onclick="display('9')"></td>
+                <td><input type="button" class="operator" value="/" onclick="display('/')"></td>
+            </tr>
+            <tr class="row">
+                <td><input type="button" class="number" value="4" onclick="display('4')"></td>
+                <td><input type="button" class="number" value="5" onclick="display('5')"></td>
+                <td><input type="button" class="number" value="6" onclick="display('6')"></td>
+                <td><input type="button" class="operator" value="*" onclick="display('*')"></td>
+            </tr>
+            <tr class="row">
+                <td><input type="button" class="number" value="1" onclick="display('1')"></td>
+                <td><input type="button" class="number" value="2" onclick="display('2')"></td>
+                <td><input type="button" class="number" value="3" onclick="display('3')"></td>
+                <td><input type="button" class="operator" value="-" onclick="display('-')"></td>
+            </tr>
+            <tr class="row">
+                <td><input type="button" class="decimal" value="." onclick="display('.')"></td>
+                <td><input type="button" class="number" value="0" onclick="display('0')"></td>
+                <td><input type="button" class="calculate" value="=" onclick="equate()"></td>
+                <td><input type="button" class="operator" value="+" onclick="display('+')"></td>
+            </tr>
+        </table>
+        <div style="text-align: center; margin-top: 20px;">
+            <input type="button" class="clear" value="C" onclick="clr()" style="width: 100px;">
+        </div>
+    </div>
+    <script>
+        function clr() {
+            document.getElementById("result").value = "";
+        }
+
+        function display(val) {
+            document.getElementById("result").value += val;
+        }
+
+        function equate() {
+            let x = document.getElementById("result").value;
+            let y = eval(x);
+            document.getElementById("result").value = y;
+        }
+    </script>
+</body>
+</html>
